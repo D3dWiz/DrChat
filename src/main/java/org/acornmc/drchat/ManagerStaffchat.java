@@ -35,13 +35,5 @@ public class ManagerStaffchat {
         format = format.replace("%message%", message);
         format = ChatColor.translateAlternateColorCodes('&', format);
         Bukkit.broadcast(format, "drchat.staffchat");
-
-    }
-
-    public static void sendDiscord(String message, Player player) {
-        if (Bukkit.getPluginManager().isPluginEnabled("DiscordSRV")) {
-            message = ChatColor.translateAlternateColorCodes('&', message);
-            DiscordSRV.getPlugin().processChatMessage(player, message, "staff-chat", false);
-        }
     }
 }

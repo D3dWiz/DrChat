@@ -20,7 +20,6 @@ public class PlayerChatListener extends ChatManager implements Listener {
             event.setCancelled(true);
             String mcToMc = configManager.get().getString("messages.staffchat.mc-to-mc-format");
             ManagerStaffchat.sendMinecraft(event.getMessage(), event.getPlayer(), mcToMc);
-            ManagerStaffchat.sendDiscord(event.getMessage(), event.getPlayer());
             return;
         }
         if (chatIsFrozen()) {

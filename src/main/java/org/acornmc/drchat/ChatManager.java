@@ -1,6 +1,5 @@
 package org.acornmc.drchat;
 
-import github.scarsz.discordsrv.DiscordSRV;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -444,7 +443,6 @@ public class ChatManager {
                     String regex = configManager.get().getString("search.regex");
                     if (regex != null && newMessage.matches(regex)) {
                         minecraftSearch(newMessage);
-                        discordSearch(newMessage);
                     }
                 }
             }
@@ -459,20 +457,6 @@ public class ChatManager {
             BukkitScheduler scheduler = configManager.plugin.getServer().getScheduler();
             scheduler.scheduleSyncDelayedTask(configManager.plugin, () ->
                     Bukkit.broadcastMessage(finalUrl), 2L);
-        }
-    }
-
-    public void discordSearch(String message) {
-        if (Bukkit.getPluginManager().isPluginEnabled("DiscordSRV")) {
-            String searchFormat = configManager.get().getString("messages.search.discord");
-            if (searchFormat != null) {
-                String finalSearchFormat = searchFormat.replace("%search%", message);
-                BukkitScheduler scheduler = configManager.plugin.getServer().getScheduler();
-                String gameChannelName = configManager.get().getString("discord.channel-name");
-                scheduler.scheduleSyncDelayedTask(configManager.plugin, () ->
-                        DiscordSRV.getPlugin().getDestinationTextChannelForGameChannelName(gameChannelName).sendMessage(finalSearchFormat).queue(),
-                        2L);
-            }
         }
     }
 }

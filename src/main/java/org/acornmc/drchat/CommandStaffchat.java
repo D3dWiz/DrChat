@@ -46,7 +46,6 @@ public class CommandStaffchat implements CommandExecutor {
         String message = String.join(" ", args);
         String mcToMc = configManager.get().getString("messages.staffchat.mc-to-mc-format");
         ManagerStaffchat.sendMinecraft(message, player, mcToMc);
-        ManagerStaffchat.sendDiscord(message, player);
         return true;
     }
 }
